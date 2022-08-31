@@ -4,9 +4,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import com.juaracoding.pageobject.drivers.DriverSingleton;
+//import com.juaracoding.pageobject.demoqa.Hooks;
 import com.juaracoding.pageobject.utils.Constants;
 
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,10 +17,8 @@ public class TestShopping {
 	public static WebDriver driver;
 	private ShoppingDemoqa shoppingDemoqa = new ShoppingDemoqa();
 	
-	@Before
-	public void setUp () {
-		DriverSingleton.getInstance(Constants.CHROME);
-		shoppingDemoqa = new ShoppingDemoqa();
+	public TestShopping() {
+		driver = Hooks.driver;
 	}
 	
 //	scenario 1
@@ -49,15 +47,18 @@ public class TestShopping {
 		shoppingDemoqa.txtSearch1("");
 	}
 
-	@And("click product shirt")
-	public void click_product_shirt() {
+	
+//scenario 2
+//	scenario 2
+	@When("user click product shirt")
+	public void user_click_product_shirt() {
 		driver.navigate().to("https://shop.demoqa.com/?s=shirt&post_type=product");
 		scroll(500);
 		shoppingDemoqa.clickShirt();
 		scroll(300);
 	}
 	
-	@Then("add to cart")
+	@And("add to cart")
 	public void add_to_cart() {
 		shoppingDemoqa.addCart();
 		shoppingDemoqa.clickBtnCart();
@@ -65,6 +66,7 @@ public class TestShopping {
 	
 	@And("user click tab checkout")
 	public void user_click_tab_checkout() {
+//		driver .get(Constants.URLSHOP);
 		shoppingDemoqa.clickBtnCheckout();
 		scroll(300);
 	}
@@ -80,6 +82,7 @@ public class TestShopping {
 	public void click_button_place_order() {
 		shoppingDemoqa.clickPlaceOrder();
 	}
+		
 
 	static void scroll(int vertical) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
