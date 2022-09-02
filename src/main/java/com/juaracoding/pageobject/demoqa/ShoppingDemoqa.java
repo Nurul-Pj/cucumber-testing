@@ -55,6 +55,9 @@ private WebDriver driver;
 //	CheckoutFitur
 	@FindBy(xpath = "//*[@id='post-6']/div/div/div[2]/div[2]/div/a")
 	private WebElement btnCheckout;
+	
+	@FindBy(xpath = "//h1[@class='page-title']")
+	private WebElement txtCheckoutPage;
 
 //	Data Place Order
 	@FindBy(xpath = "//input[@id='billing_first_name']")
@@ -134,6 +137,10 @@ private WebDriver driver;
 	
 	public void clickBtnCheckout() {
 		btnCheckout.click();
+	}
+	
+	public String getTxtCheckoutPage() {
+		return txtCheckoutPage.getText();
 	}
 	
 	public void data () {
